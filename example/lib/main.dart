@@ -28,6 +28,7 @@ class _MyAppState extends State<MyApp> {
 
     try {
       platformVersion = await _footballnotificationPlugin.getPlatformVersion(
+        leagueid: [98,292,169,17,71,262,281,265,242,239, 140,78,135,61,39, 88, 235,218,179,94,207, 103,79, 62,253,133,540, 949,13,16,43,40,144,119,210,136],
               notification: true, token: "") ??
           'Unknown platform version';
     } on PlatformException {

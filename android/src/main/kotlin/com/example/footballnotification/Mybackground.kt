@@ -127,6 +127,7 @@ class Mybackground() : Service() {
         var job2 = CoroutineScope(Dispatchers.Main).async {
 
             for (match in result!!){
+                Log.i("leagueid", "${leagueid.contains(match.league.id)}")
                 if (leagueid.contains(match.league.id)){
                     goalnotification(match);
                 }
