@@ -38,6 +38,7 @@ class Mybackground() : Service() {
     lateinit var  handler : Handler;
     lateinit var runable : Runnable;
     lateinit var token: String;
+    lateinit var leagueid : ArrayList<Int>;
     var livematchdata = "livematchdata";
     lateinit var notificationManager: NotificationManager
     lateinit var notificationChannel: NotificationChannel
@@ -59,6 +60,7 @@ class Mybackground() : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         val context: Context = this
         token = intent!!.getStringExtra("token").toString();
+        leagueid = intent!!.getIntegerArrayListExtra("leagueid") as ArrayList<Int>;
         println("${token}")
         var t = 0
         handler = Handler();
@@ -125,7 +127,10 @@ class Mybackground() : Service() {
         var job2 = CoroutineScope(Dispatchers.Main).async {
 
             for (match in result!!){
-                goalnotification(match);
+                if (leagueid.contains(match.league.id)){
+                    goalnotification(match);
+                }
+
             }
             println(result!!.size)
             "job2 round complete"

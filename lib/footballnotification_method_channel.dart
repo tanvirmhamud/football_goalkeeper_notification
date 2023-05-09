@@ -11,10 +11,11 @@ class MethodChannelFootballnotification extends FootballnotificationPlatform {
 
   @override
   Future getPlatformVersion(
-      {required String token, required bool notification}) async {
+      {required String token, required bool notification, required List<int> leagueid}) async {
     if (notification == true) {
       await methodChannel.invokeMethod<String>('getPlatformVersion', {
         "token": token,
+        "leagueid": leagueid
       });
     } else {
       await methodChannel.invokeMethod<String>('notificatonoff');

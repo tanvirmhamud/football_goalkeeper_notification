@@ -27,6 +27,7 @@ abstract class FootballnotificationPlatform extends PlatformInterface {
   Future getPlatformVersion({
     required String token,
     required bool notification,
+    required List<int> leagueid,
   }) {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }

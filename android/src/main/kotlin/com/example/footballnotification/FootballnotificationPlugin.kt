@@ -44,10 +44,12 @@ class FootballnotificationPlugin: FlutterPlugin, MethodCallHandler, ActivityAwar
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
     if (call.method == "getPlatformVersion") {
       var token : String ? = call.argument("token");
+      var legaueid :ArrayList<Int>? = call.argument("leagueid");
       context = activity.applicationContext;
       if (isMyServiceRunning(Mybackground::class.java) == false){
         var service = Intent(context, Mybackground::class.java)
         service.putExtra("token",token);
+        service.putExtra("leagueid",legaueid)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
           activity.startService(service)
@@ -58,6 +60,7 @@ class FootballnotificationPlugin: FlutterPlugin, MethodCallHandler, ActivityAwar
         var service = Intent(context, Mybackground::class.java)
         activity.stopService(service);
         service.putExtra("token",token);
+        service.putExtra("leagueid",legaueid)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
           activity.startService(service)
         } else {
